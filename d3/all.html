@@ -8,7 +8,6 @@
 body {
   margin: 0;
   background: #222;
-  min-width: 600px;
   font-family: Helvetica, Arial, Sans-Serif;
   color: #aaa;
   font-size: 15px;
@@ -44,7 +43,7 @@ circle {
 
 <script>
 
-var width = 1000, height = 850;
+var width = 1000, height = 1000;
 //var stations = [], stationsPositions = [], stationsIndex = [];
 var body = d3.select("body");
 
@@ -84,70 +83,18 @@ var stationsPoints = rect.append("svg:g")
 	.attr("id", "stations");
 
 //loading
-d3.json("../data/parks.geojson", function(collection) {
-	parks.selectAll("#parks")
-	  .data(collection.features)
-	  .enter().append("svg:path","parks")
-	  .attr("fill", "rgba(0,100,15,0.5)")
-	  .style("stroke-width", 1)
-	  .attr("d", parksPath);
-	});
 
-d3.json("../data/streets.geojson", function(collection) {
+d3.json("../data/hamovniki.geojson", function(collection) {
 	  streets.selectAll("#streetsLines")
 	    .data(collection.features)
 	    .enter().append("svg:path","streetsLines")
 		.attr("fill", "none")
 		.style("stroke", "rgba(140,140,140,0.25)")
-		.style("stroke-width", 1.5)
+		.style("stroke-width", 2.5)
 	    .attr("d", path);
 	});
 
 
-//loading stations CSV
-d3.tsv("../data/bike_stations.csv", function(d,i) {
-
-	//getting lonlat
-	var location = projection([d.lon, d.lat]);
-	var fill = d3.hsl((i = (i*3) % 360), 1, .5); //d3.rgb(48,196,196); //d3.hsl((i = (i*3) % 360), 1, .5);
-	console.log(fill);
-
-	stationsPoints.append("circle", "stationsPoints")
-       .attr("cx", location[0])
-       .attr("cy", location[1])
-	   .style("fill", fill)
-     .style("opacity", 0.5)
-	   .style("stroke-width", 0)
-	   .style("cursor", "pointer")
-     .attr("r", Math.sqrt(d.capacity)*5)
- 	   .on("mouseenter", function(z){
-		   d3.select(this)
-		   .transition()
-		   .duration(800)
-		   .ease("linear")
-		   .attr("r", Math.sqrt(d.capacity)*30);
-	   })
-     .on("mouseout", function(z){
-     d3.select(this)
-     .transition()
-     .duration(800)
-     .ease("bounce")
-     .attr("r", Math.sqrt(d.capacity)*5);
-    })
-		.on("click", function(z){
- 		   d3.select(this)
- 		   .transition()
- 		   .duration(500)
- 		   .ease(Math.sqrt)
- 		   //.style("opacity", .8)
- 		   .attr("r", Math.sqrt(d.capacity)*50)
-		   .style("opacity", 0)
- 		   .transition()
- 		   .duration(500)
-		   .ease("linear")
-		   .attr("r", Math.sqrt(d.capacity)*5)
-		   .style("opacity", 1);
-	   });
 
    },
    function(d){

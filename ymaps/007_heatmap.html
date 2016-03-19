@@ -32,7 +32,7 @@ ymaps.ready(function() {
 	});
 
 	//загружаем bikepoints.json с помощью jQuery
-	jQuery.getJSON('data/bikepoints.json', function(json) {
+	jQuery.getJSON('http://api.data.mos.ru/v1/datasets/1122/features', function(json) {
 
 		//загружаем модуль тепловых карт 
 		ymaps.modules.require(['Heatmap'], function (Heatmap) {
@@ -48,7 +48,7 @@ ymaps.ready(function() {
                 0.7: 'rgba(200,200,0,0.8)',
                 0.9: 'rgba(255,44,0,1)'
             },
-				radius: 50 
+				radius: 30 
 			});
 			
 			//добавляем тепловую карту на нашу карту

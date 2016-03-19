@@ -28,21 +28,29 @@ ymaps.ready(function() {
 	//создаём кластеризатор
 	clusterer = new ymaps.Clusterer({
 		//задаём стиль кластеризатора
-		preset: 'islands#blueClusterIcons'
+		//preset: 'islands#blueClusterIcons'
+		clusterIcons:[{
+			href: 'src/adv_icon_1.svg',
+			size: [48,48],
+			offset: [-12, -12]
+
+		}]
 	});
 
 
 	//загружаем bikepoints.json с помощью jQuery
-	jQuery.getJSON('data/bikepoints.json', function(json) {
+	jQuery.getJSON('http://api.data.mos.ru/v1/datasets/1122/features', function(json) {
 
 		//в json файле есть массив features с геообъектами
 		jQuery.each(json.features,function(i, feature) {
 			
 			//добавляем новую метку с иконкой в массив объектов кластеризатора
 			clusterer.add(new ymaps.Placemark(feature.geometry.coordinates, {
+				//задаём содержимое для балуна по клику на объект
+				balloonContent: feature.properties.Attributes.ConstructionType + '<br/>Собственник: ' + feature.properties.Attributes.Owner + '<br/>Улица: ' + feature.properties.Attributes.Location,
 			}, {
 				iconLayout: 'default#image',
-				iconImageHref: 'src/bikeicon.svg',
+				iconImageHref: 'src/adv_icon_1.svg',
 				iconImageSize: [24, 24],
 				iconImageOffset: [-12, -12]
 	        }));

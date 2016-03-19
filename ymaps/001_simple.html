@@ -35,7 +35,11 @@ ymaps.ready(function() {
 			myMap.geoObjects.add(new ymaps.Placemark(feature.geometry.coordinates, {
 			}, {
 				//preset: 'islands#circleDotIcon', //стандартный пресет
-				//iconColor: '#1faee9', //цвет метки из пресета
+				iconLayout: 'default#image',
+        iconImageHref: '../ymaps/i_2.svg',
+        iconImageSize: [20, 20],
+        iconImageOffset: [0, 0]
+		//iconColor: '#1faee9', //цвет стандартной метки из пресета
 	        }));
 		});
 	});

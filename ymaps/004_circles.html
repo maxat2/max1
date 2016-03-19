@@ -27,7 +27,7 @@ ymaps.ready(function() {
 	});
 
 	//загружаем bikepoints.json с помощью jQuery
-	jQuery.getJSON('data/bikepoints.json', function(json) {
+	jQuery.getJSON('data/adv.json', function(json) {
 
 		//в json файле есть массив features с геообъектами, обходим его
 		jQuery.each(json.features,function(i, feature) {
