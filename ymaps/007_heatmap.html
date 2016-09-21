@@ -32,7 +32,7 @@ ymaps.ready(function() {
 	});
 
 	//загружаем bikepoints.json с помощью jQuery
-	jQuery.getJSON('data/mac.json', function(json) {
+	jQuery.getJSON('data/mac.geojson', function(json) {
 
 		//загружаем модуль тепловых карт 
 		ymaps.modules.require(['Heatmap'], function (Heatmap) {
