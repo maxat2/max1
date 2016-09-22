@@ -20,6 +20,27 @@
 </head>
 <body>
     <div id="map"></div>
+    <script type="text/javascript">
+var coords = [
+    [55.75, 37.50], [55.75, 37.71], [55.70, 37.70]
+],
+    myCollection = new ymaps.GeoObjectCollection({}, {
+       preset: 'islands#redIcon', //все метки красные
+       draggable: true // и их можно перемещать
+    });
+
+for (var i = 0; i < coords.length; i++) {
+    myCollection.add(new ymaps.Placemark(coords[i]));
+}
+
+myMap.geoObjects.add(myCollection);
+
+// При клике на карту все метки будут удалены.
+myCollection.getMap().events.add('click', function() {
+    myCollection.removeAll();
+});
+</script>
+
 <script language="javascript">
 ymaps.ready(function() {
 
