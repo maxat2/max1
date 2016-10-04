@@ -66,12 +66,12 @@ ymaps.ready(function() {
 			//добавляем на карту объект с координатами
 			myMap.geoObjects.add(new ymaps.Placemark(feature.geometry.coordinates, {
 			}, {
-				//preset: 'islands#circleDotIcon', //стандартный пресет
-				iconLayout: 'default#image',
-        iconImageHref: '../ymaps/aviapark.svg',
-        iconImageSize: [15, 15],
-        iconImageOffset: [0, 0]
-		//iconColor: '#1faee9', //цвет стандартной метки из пресета
+				preset: 'islands#circleDotIcon', //стандартный пресет
+				//iconLayout: 'default#image',
+        //iconImageHref: '../ymaps/aviapark.svg',
+        //iconImageSize: [15, 15],
+        //iconImageOffset: [0, 0]
+		iconColor: '#1faee9', //цвет стандартной метки из пресета
 	        }));
 		});
 	});
